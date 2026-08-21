@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Altramax QR Studio | Free Custom QR Code Generator with Logo</title>
+    <meta name="description" content="Generate valid, high-resolution custom QR codes for free. Add your logo, apply linear/radial color gradients, choose custom shapes, and download in PNG, JPEG, or SVG format.">
+    <meta name="keywords" content="qr code generator, free qr codes, qr code monkey, custom qr code, qr code logo, vector qr code, svg qr code, qr generator">
+    <meta name="author" content="Altramax">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Altramax QR Studio | Free Custom QR Code Generator with Logo">
+    <meta property="og:description" content="Create premium custom QR codes with color gradients, custom shapes, and central logos. Download high-resolution PNG, JPEG, and vector SVG.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Altramax QR Studio | Free Custom QR Code Generator with Logo">
+    <meta property="twitter:description" content="Create premium custom QR codes with color gradients, custom shapes, and central logos. Download high-resolution PNG, JPEG, and vector SVG.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="512x512" href="favicon/favicon-512x512.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+
+    <!-- QR Code Styling Library -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Theme Toggle & Header Background Elements -->
+    <div class="glow-bg" id="glow-bg"></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo.svg" alt="Altramax Logo" class="brand-logo" onerror="this.src='logo.png'">
+                <div class="brand-info">
+                    <h1>Altramax <span class="accent-text">QR Studio</span></h1>
+                    <p class="subtitle">The ultimate free QR code creator with high-quality custom styles and logos</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i data-lucide="moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="app-layout">
+            <!-- Left Column: Settings and Input Form -->
+            <div class="settings-column">
+                <!-- Content Type Tabs -->
+                <div class="tabs-container">
+                    <div class="tabs-scroll" id="content-tabs">
+                        <button class="tab-btn active" data-tab="url" id="tab-url-btn">
+                            <i data-lucide="link"></i>
+                            <span>URL</span>
+                        </button>
+                        <button class="tab-btn" data-tab="text" id="tab-text-btn">
+                            <i data-lucide="align-left"></i>
+                            <span>Text</span>
+                        </button>
+                        <button class="tab-btn" data-tab="email" id="tab-email-btn">
+                            <i data-lucide="mail"></i>
+                            <span>Email</span>
+                        </button>
+                        <button class="tab-btn" data-tab="phone" id="tab-phone-btn">
+                            <i data-lucide="phone"></i>
+                            <span>Phone</span>
+                        </button>
+                        <button class="tab-btn" data-tab="sms" id="tab-sms-btn">
+                            <i data-lucide="message-square"></i>
+                            <span>SMS</span>
+                        </button>
+                        <button class="tab-btn" data-tab="wifi" id="tab-wifi-btn">
+                            <i data-lucide="wifi"></i>
+                            <span>WiFi</span>
+                        </button>
+                        <button class="tab-btn" data-tab="vcard" id="tab-vcard-btn">
+                            <i data-lucide="contact-2"></i>
+                            <span>vCard</span>
+                        </button>
+                        <button class="tab-btn" data-tab="mecard" id="tab-mecard-btn">
+                            <i data-lucide="user"></i>
+                            <span>MeCard</span>
+                        </button>
+                        <button class="tab-btn" data-tab="location" id="tab-location-btn">
+                            <i data-lucide="map-pin"></i>
+                            <span>Location</span>
+                        </button>
+                        <button class="tab-btn" data-tab="event" id="tab-event-btn">
+                            <i data-lucide="calendar"></i>
+                            <span>Event</span>
+                        </button>
+                        <button class="tab-btn" data-tab="crypto" id="tab-crypto-btn">
+                            <i data-lucide="wallet"></i>
+                            <span>Crypto</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Details Card -->
+                <section class="card input-card">
+                    <h2 class="section-title"><span class="step-num">1</span> Enter Content</h2>
+                    <hr class="section-divider">
+                    
+                    <!-- Dynamic Input Content Panels -->
+                    <div class="tab-content" id="tab-content-container">
+                        <!-- URL TAB -->
+                        <div class="tab-panel active" id="panel-url">
+                            <div class="input-group">
+                                <label for="input-url">Your URL</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="link" class="input-icon"></i>
+                                    <input type="url" id="input-url" placeholder="https://www.example.com" value="https://altramax.com">
+                                </div>
+                                <span class="help-text">Your QR Code will redirect to this URL when scanned.</span>
+                            </div>
+                        </div>
+
+                        <!-- TEXT TAB -->
+                        <div class="tab-panel" id="panel-text">
+                            <div class="input-group">
+                                <label for="input-text">Your Text</label>
+                                <textarea id="input-text" rows="4" placeholder="Enter any plain text here..."></textarea>
+                                <span class="help-text">Ideal for raw text, codes, passwords, or simple notes.</span>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL TAB -->
+                        <div class="tab-panel" id="panel-email">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-email-to">Email Address</label>
+                                    <div class="input-wrapper">
+                                        <i data-lucide="mail" class="input-icon"></i>
+                                        <input type="email" id="input-email-to" placeholder="recipient@example.com">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-email-subject">Subject</label>
+                                    <div class="input-wrapper">
+                                        <i data-lucide="type" class="input-icon"></i>
+                                        <input type="text" id="input-email-subject" placeholder="Hello there!">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-email-body">Message Body</label>
+                                <textarea id="input-email-body" rows="3" placeholder="Write your email body here..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- PHONE TAB -->
+                        <div class="tab-panel" id="panel-phone">
+                            <div class="input-group">
+                                <label for="input-phone">Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="phone" class="input-icon"></i>
+                                    <input type="tel" id="input-phone" placeholder="+1 (555) 000-0000">
+                                </div>
+                                <span class="help-text">Includes country code (e.g. +1 for US, +44 for UK).</span>
+                            </div>
+                        </div>
+
+                        <!-- SMS TAB -->
+                        <div class="tab-panel" id="panel-sms">
+                            <div class="input-group">
+                                <label for="input-sms-phone">Recipient Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="phone" class="input-icon"></i>
+                                    <input type="tel" id="input-sms-phone" placeholder="+1 (555) 000-0000">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-sms-message">SMS Message</label>
+                                <textarea id="input-sms-message" rows="3" placeholder="Type your SMS message here..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- WIFI TAB -->
+                        <div class="tab-panel" id="panel-wifi">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-wifi-ssid">Network SSID (Name)</label>
+                                    <div class="input-wrapper">
+                                        <i data-lucide="wifi" class="input-icon"></i>
+                                        <input type="text" id="input-wifi-ssid" placeholder="My Home WiFi">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-wifi-encryption">Network Type</label>
+                                    <div class="input-wrapper">
+                                        <select id="input-wifi-encryption">
+                                            <option value="WPA">WPA / WPA2 / WPA3</option>
+                                            <option value="WEP">WEP</option>
+                                            <option value="nopass">Unencrypted (Open)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3 align-end">
+                                <div class="input-group">
+                                    <label for="input-wifi-password">Password</label>
+                                    <div class="input-wrapper">
+                                        <i data-lucide="key-round" class="input-icon"></i>
+                                        <input type="password" id="input-wifi-password" placeholder="••••••••">
+                                    </div>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="input-wifi-hidden" class="custom-checkbox">
+                                    <label for="input-wifi-hidden">Hidden SSID Network</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- VCARD TAB -->
+                        <div class="tab-panel" id="panel-vcard">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-vcard-first">First Name</label>
+                                    <input type="text" id="input-vcard-first" placeholder="John">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-last">Last Name</label>
+                                    <input type="text" id="input-vcard-last" placeholder="Doe">
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3">
+                                <div class="input-group">
+                                    <label for="input-vcard-org">Organization</label>
+                                    <input type="text" id="input-vcard-org" placeholder="Altramax Inc.">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-title">Job Title</label>
+                                    <input type="text" id="input-vcard-title" placeholder="Lead Architect">
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3">
+                                <div class="input-group">
+                                    <label for="input-vcard-phone">Phone (Work)</label>
+                                    <input type="tel" id="input-vcard-phone" placeholder="+1 (555) 111-2222">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-mobile">Mobile</label>
+                                    <input type="tel" id="input-vcard-mobile" placeholder="+1 (555) 333-4444">
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3">
+                                <div class="input-group">
+                                    <label for="input-vcard-email">Email Address</label>
+                                    <input type="email" id="input-vcard-email" placeholder="john.doe@example.com">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-url">Website</label>
+                                    <input type="url" id="input-vcard-url" placeholder="https://example.com">
+                                </div>
+                            </div>
+                            <div class="grid-3 mt-3">
+                                <div class="input-group col-2">
+                                    <label for="input-vcard-street">Street Address</label>
+                                    <input type="text" id="input-vcard-street" placeholder="123 tech parkway">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-city">City</label>
+                                    <input type="text" id="input-vcard-city" placeholder="San Francisco">
+                                </div>
+                            </div>
+                            <div class="grid-3 mt-3">
+                                <div class="input-group">
+                                    <label for="input-vcard-state">State / Prov</label>
+                                    <input type="text" id="input-vcard-state" placeholder="CA">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-zip">ZIP Code</label>
+                                    <input type="text" id="input-vcard-zip" placeholder="94107">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-vcard-country">Country</label>
+                                    <input type="text" id="input-vcard-country" placeholder="USA">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MECARD TAB -->
+                        <div class="tab-panel" id="panel-mecard">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-mecard-name">Name (Last, First)</label>
+                                    <input type="text" id="input-mecard-name" placeholder="Doe, John">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-mecard-phone">Phone</label>
+                                    <input type="tel" id="input-mecard-phone" placeholder="+15550000000">
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3">
+                                <div class="input-group">
+                                    <label for="input-mecard-email">Email</label>
+                                    <input type="email" id="input-mecard-email" placeholder="john@example.com">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-mecard-url">Website</label>
+                                    <input type="url" id="input-mecard-url" placeholder="https://example.com">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-mecard-address">Address</label>
+                                <input type="text" id="input-mecard-address" placeholder="San Francisco, CA, USA">
+                            </div>
+                        </div>
+
+                        <!-- LOCATION TAB -->
+                        <div class="tab-panel" id="panel-location">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-location-lat">Latitude</label>
+                                    <input type="number" step="any" id="input-location-lat" placeholder="e.g. 37.7749" value="37.7749">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-location-lng">Longitude</label>
+                                    <input type="number" step="any" id="input-location-lng" placeholder="e.g. -122.4194" value="-122.4194">
+                                </div>
+                            </div>
+                            <span class="help-text">Opens Google Maps / Apple Maps at these coordinates when scanned.</span>
+                        </div>
+
+                        <!-- EVENT TAB -->
+                        <div class="tab-panel" id="panel-event">
+                            <div class="input-group">
+                                <label for="input-event-title">Event Title</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="type" class="input-icon"></i>
+                                    <input type="text" id="input-event-title" placeholder="Altramax Launch Party">
+                                </div>
+                            </div>
+                            <div class="grid-2 mt-3">
+                                <div class="input-group">
+                                    <label for="input-event-start">Start Date & Time</label>
+                                    <input type="datetime-local" id="input-event-start">
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-event-end">End Date & Time</label>
+                                    <input type="datetime-local" id="input-event-end">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-event-location">Location</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="map-pin" class="input-icon"></i>
+                                    <input type="text" id="input-event-location" placeholder="123 Tech Center, San Francisco">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-event-desc">Event Description</label>
+                                <textarea id="input-event-desc" rows="3" placeholder="Tell your guests about the event..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- CRYPTO TAB -->
+                        <div class="tab-panel" id="panel-crypto">
+                            <div class="grid-2">
+                                <div class="input-group">
+                                    <label for="input-crypto-coin">Cryptocurrency</label>
+                                    <div class="input-wrapper">
+                                        <select id="input-crypto-coin">
+                                            <option value="bitcoin">Bitcoin (BTC)</option>
+                                            <option value="ethereum">Ethereum (ETH)</option>
+                                            <option value="litecoin">Litecoin (LTC)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label for="input-crypto-amount">Amount (Optional)</label>
+                                    <input type="number" step="any" id="input-crypto-amount" placeholder="e.g. 0.005">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-crypto-address">Wallet Address</label>
+                                <div class="input-wrapper">
+                                    <i data-lucide="wallet" class="input-icon"></i>
+                                    <input type="text" id="input-crypto-address" placeholder="Enter recipient wallet address">
+                                </div>
+                            </div>
+                            <div class="input-group mt-3">
+                                <label for="input-crypto-message">Message / Notes (Optional)</label>
+                                <input type="text" id="input-crypto-message" placeholder="Payment description">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Customization Accordions -->
+                <div class="accordions-container">
+                    
+                    <!-- ACCORDION 1: COLORS -->
+                    <div class="accordion card" id="acc-colors">
+                        <button class="accordion-trigger" aria-expanded="false" id="trigger-colors">
+                            <span class="trigger-left">
+                                <i data-lucide="palette" class="section-icon text-indigo"></i>
+                                <span class="trigger-title">Set Colors</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="chevron-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <!-- Body Color Options -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Body Color</h3>
+                                <div class="color-type-selector mt-2">
+                                    <label class="radio-label">
+                                        <input type="radio" name="body-color-type" value="single" checked id="color-body-single">
+                                        <span>Single Color</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="body-color-type" value="gradient" id="color-body-gradient">
+                                        <span>Color Gradient</span>
+                                    </label>
+                                </div>
+                                
+                                <!-- Single body color picker -->
+                                <div class="color-row mt-3" id="single-body-picker-row">
+                                    <div class="picker-container">
+                                        <label for="color-body-solid-val">Foreground Color</label>
+                                        <div class="picker-controls">
+                                            <input type="color" id="color-body-solid" value="#2563eb">
+                                            <input type="text" id="color-body-solid-val" value="#2563eb" class="hex-input" maxlength="7">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gradient body color pickers -->
+                                <div class="gradient-config-panel hidden mt-3" id="gradient-body-panel">
+                                    <div class="grid-2">
+                                        <div class="picker-container">
+                                            <label for="color-gradient-start-val">Start Color</label>
+                                            <div class="picker-controls">
+                                                <input type="color" id="color-gradient-start" value="#1e3a8a">
+                                                <input type="text" id="color-gradient-start-val" value="#1e3a8a" class="hex-input" maxlength="7">
+                                            </div>
+                                        </div>
+                                        <div class="picker-container">
+                                            <label for="color-gradient-end-val">End Color</label>
+                                            <div class="picker-controls">
+                                                <input type="color" id="color-gradient-end" value="#3b82f6">
+                                                <input type="text" id="color-gradient-end-val" value="#3b82f6" class="hex-input" maxlength="7">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid-2 mt-3">
+                                        <div class="input-group">
+                                            <label for="gradient-shape-type">Gradient Style</label>
+                                            <select id="gradient-shape-type">
+                                                <option value="linear">Linear Gradient</option>
+                                                <option value="radial">Radial Gradient</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group" id="gradient-angle-container">
+                                            <label for="gradient-angle">Rotation Angle</label>
+                                            <div class="slider-with-label">
+                                                <input type="range" id="gradient-angle" min="0" max="360" value="0">
+                                                <span class="range-val" id="gradient-angle-val">0°</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Background Color Picker -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Background Color</h3>
+                                <div class="color-row mt-2">
+                                    <div class="picker-container">
+                                        <label for="color-bg-val">Background Fill</label>
+                                        <div class="picker-controls">
+                                            <input type="color" id="color-bg" value="#ffffff">
+                                            <input type="text" id="color-bg-val" value="#ffffff" class="hex-input" maxlength="7">
+                                        </div>
+                                    </div>
+                                    <div class="checkbox-group ml-3">
+                                        <input type="checkbox" id="color-bg-transparent" class="custom-checkbox">
+                                        <label for="color-bg-transparent">Transparent BG</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Custom Eye Colors -->
+                            <div class="customizer-subblock">
+                                <div class="checkbox-group heading-checkbox">
+                                    <input type="checkbox" id="custom-eye-colors" class="custom-checkbox">
+                                    <h3 class="subblock-title"><label for="custom-eye-colors">Custom Eye Colors</label></h3>
+                                </div>
+                                
+                                <div class="eye-customizer-panel hidden mt-3" id="eye-colors-panel">
+                                    <!-- Eye Frame (Corners Square) Color -->
+                                    <div class="eye-section">
+                                        <h4>Eye Frame (Outer Frame)</h4>
+                                        <div class="color-type-selector mt-2">
+                                            <label class="radio-label">
+                                                <input type="radio" name="eye-frame-color-type" value="single" checked id="color-eye-frame-single">
+                                                <span>Single Color</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="eye-frame-color-type" value="gradient" id="color-eye-frame-gradient">
+                                                <span>Gradient</span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="color-row mt-3" id="single-eye-frame-row">
+                                            <div class="picker-container">
+                                                <label for="color-eye-frame-solid-val">Frame Color</label>
+                                                <div class="picker-controls">
+                                                    <input type="color" id="color-eye-frame-solid" value="#1e3a8a">
+                                                    <input type="text" id="color-eye-frame-solid-val" value="#1e3a8a" class="hex-input" maxlength="7">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="gradient-config-panel hidden mt-3" id="gradient-eye-frame-panel">
+                                            <div class="grid-2">
+                                                <div class="picker-container">
+                                                    <label for="color-frame-start-val">Start Color</label>
+                                                    <div class="picker-controls">
+                                                        <input type="color" id="color-frame-start" value="#1e3a8a">
+                                                        <input type="text" id="color-frame-start-val" value="#1e3a8a" class="hex-input" maxlength="7">
+                                                    </div>
+                                                </div>
+                                                <div class="picker-container">
+                                                    <label for="color-frame-end-val">End Color</label>
+                                                    <div class="picker-controls">
+                                                        <input type="color" id="color-frame-end" value="#3b82f6">
+                                                        <input type="text" id="color-frame-end-val" value="#3b82f6" class="hex-input" maxlength="7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="inner-divider">
+
+                                    <!-- Eye Ball (Corners Dot) Color -->
+                                    <div class="eye-section mt-3">
+                                        <h4>Eye Ball (Inner Center)</h4>
+                                        <div class="color-type-selector mt-2">
+                                            <label class="radio-label">
+                                                <input type="radio" name="eye-ball-color-type" value="single" checked id="color-eye-ball-single">
+                                                <span>Single Color</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="eye-ball-color-type" value="gradient" id="color-eye-ball-gradient">
+                                                <span>Gradient</span>
+                                            </label>
+                                        </div>
+
+                                        <div class="color-row mt-3" id="single-eye-ball-row">
+                                            <div class="picker-container">
+                                                <label for="color-eye-ball-solid-val">Ball Color</label>
+                                                <div class="picker-controls">
+                                                    <input type="color" id="color-eye-ball-solid" value="#3b82f6">
+                                                    <input type="text" id="color-eye-ball-solid-val" value="#3b82f6" class="hex-input" maxlength="7">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="gradient-config-panel hidden mt-3" id="gradient-eye-ball-panel">
+                                            <div class="grid-2">
+                                                <div class="picker-container">
+                                                    <label for="color-ball-start-val">Start Color</label>
+                                                    <div class="picker-controls">
+                                                        <input type="color" id="color-ball-start" value="#1d4ed8">
+                                                        <input type="text" id="color-ball-start-val" value="#1d4ed8" class="hex-input" maxlength="7">
+                                                    </div>
+                                                </div>
+                                                <div class="picker-container">
+                                                    <label for="color-ball-end-val">End Color</label>
+                                                    <div class="picker-controls">
+                                                        <input type="color" id="color-ball-end" value="#60a5fa">
+                                                        <input type="text" id="color-ball-end-val" value="#60a5fa" class="hex-input" maxlength="7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION 2: LOGO IMAGE -->
+                    <div class="accordion card" id="acc-logo">
+                        <button class="accordion-trigger" aria-expanded="false" id="trigger-logo">
+                            <span class="trigger-left">
+                                <i data-lucide="image" class="section-icon text-emerald"></i>
+                                <span class="trigger-title">Add Logo Image</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="chevron-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <!-- Drag & Drop Uploader -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Upload Custom Logo</h3>
+                                <div class="upload-dropzone" id="logo-dropzone">
+                                    <input type="file" id="logo-file-input" accept="image/*" class="hidden-input">
+                                    <div class="dropzone-prompt">
+                                        <i data-lucide="upload-cloud" class="upload-icon"></i>
+                                        <p class="upload-text"><strong>Click to upload</strong> or drag and drop</p>
+                                        <p class="upload-subtext">PNG, JPG or SVG formats</p>
+                                    </div>
+                                    <div class="dropzone-preview hidden" id="logo-uploaded-preview">
+                                        <img src="" alt="Uploaded Logo Preview" id="logo-preview-img">
+                                        <div class="logo-details">
+                                            <span class="logo-filename" id="logo-filename">logo.png</span>
+                                            <button class="remove-btn" id="logo-remove-uploaded" type="button">
+                                                <i data-lucide="trash-2"></i> Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Preset Logo Options -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Choose from Preset Templates</h3>
+                                <div class="logo-grid" id="preset-logos-container">
+                                    <button class="preset-logo-btn" data-logo="facebook" title="Facebook">
+                                        <i data-lucide="facebook" class="logo-icon-svg text-blue"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="twitter" title="Twitter/X">
+                                        <i data-lucide="twitter" class="logo-icon-svg text-dark"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="instagram" title="Instagram">
+                                        <i data-lucide="instagram" class="logo-icon-svg text-pink"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="youtube" title="YouTube">
+                                        <i data-lucide="youtube" class="logo-icon-svg text-red"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="linkedin" title="LinkedIn">
+                                        <i data-lucide="linkedin" class="logo-icon-svg text-blue"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="github" title="GitHub">
+                                        <i data-lucide="github" class="logo-icon-svg text-dark"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="whatsapp" title="WhatsApp">
+                                        <i data-lucide="message-circle" class="logo-icon-svg text-green"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="wifi" title="WiFi">
+                                        <i data-lucide="wifi" class="logo-icon-svg text-purple"></i>
+                                    </button>
+                                    <button class="preset-logo-btn" data-logo="email" title="Email">
+                                        <i data-lucide="mail" class="logo-icon-svg text-yellow"></i>
+                                    </button>
+                                </div>
+                                <div class="remove-preset-container mt-3 hidden" id="preset-remove-row">
+                                    <button class="btn btn-outline btn-sm text-red" id="logo-remove-preset">
+                                        <i data-lucide="x"></i> Clear Selected Logo
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Logo Settings -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Logo Display Options</h3>
+                                <div class="checkbox-group mt-2">
+                                    <input type="checkbox" id="logo-clear-bg" checked class="custom-checkbox">
+                                    <label for="logo-clear-bg">Remove background behind logo (Highly Recommended)</label>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <label for="logo-size-slider">Logo Size</label>
+                                    <div class="slider-with-label">
+                                        <input type="range" id="logo-size-slider" min="10" max="45" value="25" step="1">
+                                        <span class="range-val" id="logo-size-val">25%</span>
+                                    </div>
+                                    <span class="help-text">Sizing options above 30% might make the QR code un-scannable without high error correction.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION 3: CUSTOMIZE DESIGN -->
+                    <div class="accordion card" id="acc-design">
+                        <button class="accordion-trigger" aria-expanded="false" id="trigger-design">
+                            <span class="trigger-left">
+                                <i data-lucide="settings" class="section-icon text-cyan"></i>
+                                <span class="trigger-title">Customize Design</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="chevron-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <!-- Body Pixels Shape -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Body Shape</h3>
+                                <div class="shape-grid" id="design-body-grid">
+                                    <div class="shape-option active" data-shape="square" title="Square">
+                                        <svg viewBox="0 0 40 40"><rect x="10" y="10" width="8" height="8" /><rect x="22" y="10" width="8" height="8" /><rect x="10" y="22" width="8" height="8" /><rect x="22" y="22" width="8" height="8" /></svg>
+                                        <span>Square</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="dots" title="Dots">
+                                        <svg viewBox="0 0 40 40"><circle cx="14" cy="14" r="4" /><circle cx="26" cy="14" r="4" /><circle cx="14" cy="26" r="4" /><circle cx="26" cy="26" r="4" /></svg>
+                                        <span>Dots</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="rounded" title="Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="10" y="10" width="8" height="8" rx="2" /><rect x="22" y="10" width="8" height="8" rx="2" /><rect x="10" y="22" width="8" height="8" rx="2" /><rect x="22" y="22" width="8" height="8" rx="2" /></svg>
+                                        <span>Rounded</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="extra-rounded" title="Extra Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="10" y="10" width="8" height="8" rx="4" /><rect x="22" y="10" width="8" height="8" rx="4" /><rect x="10" y="22" width="8" height="8" rx="4" /><rect x="22" y="22" width="8" height="8" rx="4" /></svg>
+                                        <span>Extra Rd</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy" title="Classy">
+                                        <svg viewBox="0 0 40 40"><path d="M10,14 C10,10 14,10 18,10 L18,18 L10,18 Z" /><path d="M22,14 C22,10 26,10 30,10 L30,18 L22,18 Z" /><path d="M10,26 C10,22 14,22 18,22 L18,30 L10,30 Z" /><path d="M22,26 C22,22 26,22 30,22 L30,30 L22,30 Z" /></svg>
+                                        <span>Classy</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy-rounded" title="Classy Rounded">
+                                        <svg viewBox="0 0 40 40"><path d="M10,18 C10,13.5 13.5,10 18,10 L18,18 Z" /><path d="M22,18 C22,13.5 25.5,10 30,10 L30,18 Z" /><path d="M10,30 C10,25.5 13.5,22 18,22 L18,30 Z" /><path d="M22,30 C22,25.5 25.5,22 30,22 L30,30 Z" /></svg>
+                                        <span>Classy Rd</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Eye Frame Shape -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Eye Frame Shape (Outer Square)</h3>
+                                <div class="shape-grid" id="design-frame-grid">
+                                    <div class="shape-option active" data-shape="square" title="Square">
+                                        <svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Square</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="rounded" title="Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Rounded</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="extra-rounded" title="Extra Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" rx="8" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Extra Rd</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="dot" title="Dot Frame">
+                                        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Circle</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy" title="Classy Frame">
+                                        <svg viewBox="0 0 40 40"><path d="M8,20 C8,10 10,8 20,8 L32,8 L32,20 C32,30 30,32 20,32 L8,32 Z" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Classy</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy-rounded" title="Classy Rounded Frame">
+                                        <svg viewBox="0 0 40 40"><path d="M8,32 L8,20 C8,13.4 13.4,8 20,8 L32,8 L32,20 C32,26.6 26.6,32 20,32 Z" fill="none" stroke="currentColor" stroke-width="4" /></svg>
+                                        <span>Classy Rd</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="subblock-divider">
+
+                            <!-- Eye Ball Shape -->
+                            <div class="customizer-subblock">
+                                <h3 class="subblock-title">Eye Ball Shape (Inner Center)</h3>
+                                <div class="shape-grid" id="design-ball-grid">
+                                    <div class="shape-option active" data-shape="square" title="Square">
+                                        <svg viewBox="0 0 40 40"><rect x="14" y="14" width="12" height="12" fill="currentColor" /></svg>
+                                        <span>Square</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="rounded" title="Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="14" y="14" width="12" height="12" rx="2" fill="currentColor" /></svg>
+                                        <span>Rounded</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="extra-rounded" title="Extra Rounded">
+                                        <svg viewBox="0 0 40 40"><rect x="14" y="14" width="12" height="12" rx="5" fill="currentColor" /></svg>
+                                        <span>Extra Rd</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="dot" title="Dot">
+                                        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="6" fill="currentColor" /></svg>
+                                        <span>Circle</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy" title="Classy Ball">
+                                        <svg viewBox="0 0 40 40"><path d="M14,20 C14,14 14,14 20,14 L26,14 L26,20 C26,26 26,26 20,26 L14,26 Z" fill="currentColor" /></svg>
+                                        <span>Classy</span>
+                                    </div>
+                                    <div class="shape-option" data-shape="classy-rounded" title="Classy Rounded Ball">
+                                        <svg viewBox="0 0 40 40"><path d="M14,26 L14,20 C14,16.7 16.7,14 20,14 L26,14 L26,20 C26,23.3 23.3,26 20,26 Z" fill="currentColor" /></svg>
+                                        <span>Classy Rd</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACCORDION 4: TEMPLATES -->
+                    <div class="accordion card" id="acc-templates">
+                        <button class="accordion-trigger" aria-expanded="false" id="trigger-templates">
+                            <span class="trigger-left">
+                                <i data-lucide="sparkles" class="section-icon text-amber"></i>
+                                <span class="trigger-title">Preset Themes & Templates</span>
+                            </span>
+                            <i data-lucide="chevron-down" class="chevron-icon"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="templates-grid" id="templates-grid">
+                                <div class="template-card" data-template="default" title="Reset Default Style">
+                                    <div class="template-preview default-preview"></div>
+                                    <div class="template-info">
+                                        <span class="template-name">Classic Black</span>
+                                        <span class="template-desc">Simple, clean, standard</span>
+                                    </div>
+                                </div>
+                                <div class="template-card" data-template="ocean-breeze" title="Ocean Breeze Style">
+                                    <div class="template-preview ocean-preview"></div>
+                                    <div class="template-info">
+                                        <span class="template-name">Ocean Breeze</span>
+                                        <span class="template-desc">Deep blue gradient & rounds</span>
+                                    </div>
+                                </div>
+                                <div class="template-card" data-template="neon-cyber" title="Neon Cyber Style">
+                                    <div class="template-preview neon-preview"></div>
+                                    <div class="template-info">
+                                        <span class="template-name">Neon Cyber</span>
+                                        <span class="template-desc">Purple radial & leaf designs</span>
+                                    </div>
+                                </div>
+                                <div class="template-card" data-template="emerald-garden" title="Emerald Garden Style">
+                                    <div class="template-preview emerald-preview"></div>
+                                    <div class="template-info">
+                                        <span class="template-name">Forest Mint</span>
+                                        <span class="template-desc">Green gradients & dot style</span>
+                                    </div>
+                                </div>
+                                <div class="template-card" data-template="sunset-glow" title="Sunset Glow Style">
+                                    <div class="template-preview sunset-preview"></div>
+                                    <div class="template-info">
+                                        <span class="template-name">Sunset Glow</span>
+                                        <span class="template-desc">Warm linear gradient gradient</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Column: Sticky Preview and Actions -->
+            <div class="preview-column">
+                <div class="sticky-preview-wrapper">
+                    <!-- Big Generate CTA Button -->
+                    <button class="btn btn-primary btn-lg w-full mb-4 shadow-pulse" id="btn-generate">
+                        <i data-lucide="refresh-cw" class="btn-icon"></i>
+                        <span>Generate QR Code</span>
+                    </button>
+
+                    <!-- QR Canvas Preview Card -->
+                    <div class="card preview-card">
+                        <div class="preview-header">
+                            <h3>Live Preview</h3>
+                            <span class="badge" id="preview-status">Ready</span>
+                        </div>
+                        <div class="canvas-outer">
+                            <div class="canvas-container" id="qr-canvas-container">
+                                <!-- The library canvas will render here dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="resolution-control mt-4">
+                            <div class="slider-header">
+                                <label for="resolution-slider">Download Resolution</label>
+                                <span class="res-value" id="resolution-val">1000 x 1000 px</span>
+                            </div>
+                            <input type="range" id="resolution-slider" min="200" max="2000" value="1000" step="50" class="w-full">
+                            <div class="resolution-markers">
+                                <span>200px</span>
+                                <span>1000px</span>
+                                <span>2000px</span>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons-grid mt-4">
+                            <button class="btn btn-success" id="btn-download-png" title="Download as PNG">
+                                <i data-lucide="download"></i>
+                                <span>PNG</span>
+                            </button>
+                            <button class="btn btn-secondary" id="btn-download-jpeg" title="Download as JPEG">
+                                <i data-lucide="image"></i>
+                                <span>JPEG</span>
+                            </button>
+                            <button class="btn btn-info" id="btn-download-svg" title="Download as Vector SVG">
+                                <i data-lucide="file-code"></i>
+                                <span>SVG</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Safety checks / scan advice card -->
+                    <div class="card tips-card mt-4">
+                        <h4><i data-lucide="info" class="text-indigo mr-1"></i> Scanning Guidelines</h4>
+                        <ul class="tips-list">
+                            <li>Always test the QR code with your phone camera before printing it.</li>
+                            <li>Ensure there is high contrast between the dots and the background.</li>
+                            <li>If your logo is too large, the QR code might become un-scannable. Adjust the size to 20-30%.</li>
+                            <li>Keep the background light for best readability with standard cameras.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Altramax QR Studio. All rights reserved. Created in pair programming with AI.</p>
+            <div class="footer-links">
+                <a href="#" id="link-privacy">Privacy Policy</a>
+                <a href="#" id="link-terms">Terms of Service</a>
+                <a href="https://altramax.com" target="_blank" rel="noopener">Altramax Web</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript Application -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -212,14 +212,17 @@ body.dark .main-header {
 
 .app-layout {
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: minmax(0, 1fr) 400px;
     gap: 32px;
     align-items: start;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1150px) {
     .app-layout {
         grid-template-columns: 1fr;
+    }
+    .sticky-preview-wrapper {
+        position: static !important;
     }
 }
 
@@ -1295,9 +1298,76 @@ body.dark .tips-card {
     color: var(--primary);
 }
 
+@media (max-width: 768px) {
+    .subtitle {
+        display: none;
+    }
+    .brand-info h1 {
+        font-size: 1.25rem;
+    }
+    .header-container {
+        height: 64px;
+    }
+    .brand-logo {
+        height: 36px;
+    }
+}
+
 @media (max-width: 640px) {
     .footer-container {
         flex-direction: column;
         text-align: center;
+    }
+    .card {
+        padding: 18px;
+    }
+    .main-content {
+        padding: 16px 0 48px 0;
+    }
+    .app-layout {
+        padding: 0 16px;
+        gap: 20px;
+    }
+    .tabs-container {
+        padding: 4px;
+        border-radius: var(--radius-md);
+    }
+    .tab-btn {
+        padding: 8px 12px;
+        min-width: 64px;
+        font-size: 0.72rem;
+    }
+    .accordion-trigger {
+        padding: 18px 20px;
+    }
+    .accordion.active .accordion-content {
+        padding: 0 20px 20px 20px;
+    }
+    .upload-dropzone {
+        padding: 16px;
+        min-height: 110px;
+    }
+    /* Prevent hex input from causing overflow */
+    .hex-input {
+        width: 80px;
+    }
+    /* Color rows wrap gracefully */
+    .color-row {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    /* Ensure canvas doesn't overflow its container */
+    .canvas-outer {
+        max-width: 100%;
+    }
+    /* Shrink logo grid items on small screens */
+    .logo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+    }
+}
+
+@media (max-width: 400px) {
+    .action-buttons-grid {
+        grid-template-columns: 1fr;
     }
 }

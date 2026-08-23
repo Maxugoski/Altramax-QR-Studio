@@ -148,6 +148,7 @@ a:hover {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -248,7 +249,7 @@ body.dark .main-header {
     padding: 8px;
     margin-bottom: 24px;
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
+    overflow: clip; /* clip (not hidden) so border-radius is preserved but child scroll still works */
     transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
@@ -1298,76 +1299,183 @@ body.dark .tips-card {
     color: var(--primary);
 }
 
+/* =============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================= */
+
+/* Tablet landscape and below */
 @media (max-width: 768px) {
     .subtitle {
         display: none;
     }
     .brand-info h1 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
     .header-container {
-        height: 64px;
+        height: 60px;
+        padding: 0 16px;
     }
     .brand-logo {
-        height: 36px;
+        height: 32px;
+    }
+    .footer-container {
+        padding: 0 16px;
     }
 }
 
+/* Mobile portrait and below */
 @media (max-width: 640px) {
+    /* Shrink all container padding */
+    .header-container,
+    .app-layout,
     .footer-container {
-        flex-direction: column;
-        text-align: center;
+        padding: 0 12px;
     }
-    .card {
-        padding: 18px;
-    }
+
+    /* Page layout */
     .main-content {
         padding: 16px 0 48px 0;
     }
     .app-layout {
-        padding: 0 16px;
-        gap: 20px;
+        gap: 16px;
     }
+
+    /* Cards */
+    .card {
+        padding: 16px;
+        border-radius: var(--radius-md);
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 0 12px;
+    }
+
+    /* Tabs bar */
     .tabs-container {
         padding: 4px;
         border-radius: var(--radius-md);
     }
     .tab-btn {
-        padding: 8px 12px;
-        min-width: 64px;
-        font-size: 0.72rem;
+        padding: 8px 10px;
+        min-width: 58px;
+        font-size: 0.7rem;
+        gap: 5px;
     }
+    .tab-btn i {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Section title */
+    .section-title {
+        font-size: 1rem;
+    }
+
+    /* Accordion */
     .accordion-trigger {
-        padding: 18px 20px;
+        padding: 16px;
+    }
+    .trigger-title {
+        font-size: 0.95rem;
     }
     .accordion.active .accordion-content {
-        padding: 0 20px 20px 20px;
+        padding: 0 16px 16px 16px;
     }
-    .upload-dropzone {
-        padding: 16px;
-        min-height: 110px;
+
+    /* Form grids already collapse at 640px, but ensure sub-grids inside accordions do too */
+    .gradient-config-panel .grid-2,
+    .eye-section .grid-2 {
+        grid-template-columns: 1fr;
     }
-    /* Prevent hex input from causing overflow */
-    .hex-input {
-        width: 80px;
-    }
-    /* Color rows wrap gracefully */
+
+    /* Color rows: stack the picker + hex side by side but allow wrapping */
     .color-row {
-        flex-wrap: wrap;
         gap: 12px;
+        flex-wrap: wrap;
     }
-    /* Ensure canvas doesn't overflow its container */
-    .canvas-outer {
-        max-width: 100%;
+    .hex-input {
+        width: 75px;
+        padding: 8px;
+        font-size: 0.8rem;
     }
-    /* Shrink logo grid items on small screens */
+
+    /* Shape grids: 2 columns on mobile instead of 3 */
+    .shape-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    /* Templates: single column on mobile */
+    .templates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Logo grid: compact */
     .logo-grid {
         grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+        gap: 8px;
+    }
+
+    /* Upload dropzone */
+    .upload-dropzone {
+        padding: 16px;
+        min-height: 100px;
+    }
+
+    /* Preview card */
+    .preview-card {
+        padding: 16px;
+    }
+    .canvas-outer {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    /* Download buttons: 3 columns still, but smaller text */
+    .action-buttons-grid .btn span {
+        display: none;
+    }
+    .action-buttons-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    .action-buttons-grid .btn {
+        padding: 12px;
+        justify-content: center;
+    }
+
+    /* Generate button */
+    .btn-lg {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* ml-3 can break layouts on mobile */
+    .ml-3 {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+    .color-row .ml-3 {
+        margin-left: 0;
+        margin-top: 0;
     }
 }
 
+/* Extra-small phones */
 @media (max-width: 400px) {
     .action-buttons-grid {
         grid-template-columns: 1fr;
+    }
+    .action-buttons-grid .btn span {
+        display: inline;
+    }
+    .tab-btn {
+        min-width: 52px;
+        padding: 6px 8px;
+        font-size: 0.65rem;
     }
 }
